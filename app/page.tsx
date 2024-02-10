@@ -1,5 +1,6 @@
 "use client";
 
+import type { MouseEventHandler } from "react";
 import { RandomFox } from "@/components/RandomFox";
 import { useState } from "react";
 const random = () => Math.floor(Math.random() * 123) + 1;
@@ -9,12 +10,12 @@ const generateUniqueId = (): string => {
   return Math.random().toString(36).substr(2, 9);
 };
 
-type ImageItems = { id: string; url: string };
+type ImageItem = { id: string; url: string };
 export default function Home() {
-  const [images, setImages] = useState<Array<ImageItems>>([]);
+  const [images, setImages] = useState<Array<ImageItem>>([]);
 
-  const addNewFox = () => {
-    const newImageItem = {
+  const addNewFox: MouseEventHandler<HTMLButtonElement> = (event) => {
+    const newImageItem: ImageItem = {
       id: generateUniqueId(),
       url: `https://randomfox.ca/images/${random()}.jpg`,
     };
